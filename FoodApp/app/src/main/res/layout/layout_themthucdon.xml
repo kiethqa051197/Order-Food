@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm Thực Đơn"
+        android:layout_gravity="center"
+        android:textSize="@dimen/size18sp"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/size10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size250dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edThemTenMonAn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_margin="@dimen/size10dp"
+                android:padding="@dimen/size10dp"
+                android:hint="Tên món ăn"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray"/>
+
+            <EditText
+                android:id="@+id/edThemGiaTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_margin="@dimen/size10dp"
+                android:padding="@dimen/size10dp"
+                android:hint="Giá tiền"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray"
+                android:numeric="integer"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinLoaiMonAn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/size10dp"
+                    android:padding="@dimen/size10dp">
+
+                </Spinner>
+
+                <ImageButton
+                    android:id="@+id/imThemLoaiThucDon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_input_add"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imHinhThucDon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size150dp"
+            android:src="@drawable/backgroundheader1"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDongYThemMonAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dongy"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/size10dp"
+            android:padding="@dimen/size10dp"
+            android:background="@color/colorPrimary"/>
+
+        <Button
+            android:id="@+id/btnThoatThemMonAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/thoat"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/size10dp"
+            android:padding="@dimen/size10dp"
+            android:background="@color/colorRed"/>
+    </LinearLayout>
+</LinearLayout>

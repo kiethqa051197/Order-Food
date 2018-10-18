@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.anhki.foodapp.DangKyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp" tools:context=".DangKyActivity">
+
+        <TextView
+            android:id="@+id/txtTieuDeDangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/size10dp"
+            android:text="@string/dangky"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/size30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/frmDangKy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <EditText
+                android:id="@+id/edTenDangNhapDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:hint="@string/tendangnhap"
+                android:textColorHint="@color/colorGray"
+                android:padding="@dimen/size10dp"
+                android:layout_margin="@dimen/size10dp"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="@dimen/size10dp"
+                android:singleLine="true"/>
+
+            <EditText
+                android:id="@+id/edMatKhauDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:hint="@string/nhapmatkhau"
+                android:textColorHint="@color/colorGray"
+                android:padding="@dimen/size10dp"
+                android:layout_margin="@dimen/size10dp"
+                android:drawableLeft="@drawable/password"
+                android:drawablePadding="@dimen/size10dp"
+                android:password="true"/>
+
+            <RadioGroup
+                android:id="@+id/rgGioiTinhDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdNam"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nam"
+                    android:textColor="@color/colorWhite"/>
+                <RadioButton
+                    android:id="@+id/rdNu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nữ"
+                    android:textColor="@color/colorWhite"/>
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/spinQuyen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+
+            <EditText
+                android:id="@+id/edNgaySinhDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:hint="@string/ngaysinh"
+                android:textColorHint="@color/colorGray"
+                android:padding="@dimen/size10dp"
+                android:layout_margin="@dimen/size10dp"
+                android:drawableLeft="@drawable/calender"
+                android:drawablePadding="@dimen/size10dp"/>
+
+            <EditText
+                android:id="@+id/edCMNDDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:hint="@string/cmnd"
+                android:textColorHint="@color/colorGray"
+                android:padding="@dimen/size10dp"
+                android:layout_margin="@dimen/size10dp"
+                android:drawableLeft="@drawable/idcard"
+                android:drawablePadding="@dimen/size10dp"
+                android:numeric="integer"
+                android:maxLength="9"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/btnDongYDK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dongy"
+                    android:layout_weight="1"
+                    android:padding="@dimen/size10dp"
+                    android:layout_margin="@dimen/size10dp"
+                    android:background="@color/colorGreen"/>
+                <Button
+                    android:id="@+id/btnThoatDK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/thoat"
+                    android:layout_weight="1"
+                    android:padding="@dimen/size10dp"
+                    android:layout_margin="@dimen/size10dp"
+                    android:background="@color/colorRed"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

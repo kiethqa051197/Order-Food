@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="size10dp">10dp</dimen>
+    <dimen name="size30sp">30sp</dimen>
+    <dimen name="size18sp">18sp</dimen>
+    <dimen name="size70dp">70dp</dimen>
+    <dimen name="size150dp">150dp</dimen>
+    <dimen name="size80dp">80dp</dimen>
+    <dimen name="size160dp">160dp</dimen>
+    <dimen name="size5dp">5dp</dimen>
+    <dimen name="size100dp">100dp</dimen>
+    <dimen name="size250dp">250dp</dimen>
+    <dimen name="size50dp">50dp</dimen>
+    <dimen name="size190dp">190dp</dimen>
+</resources>

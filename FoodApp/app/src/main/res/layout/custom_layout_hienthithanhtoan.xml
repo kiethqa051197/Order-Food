@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtTenMonAnThanToan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tenmonan"
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:padding="@dimen/size10dp"/>
+
+        <TextView
+            android:id="@+id/txtSoLuongThanhToan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/soluong"
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:padding="@dimen/size10dp" />
+
+        <TextView
+            android:id="@+id/txtGiaTienThanhToan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/giatien"
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:padding="@dimen/size10dp"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.anhki.foodapp">
+
+    //cấp quyền truy cập vào bộ nhớ để sử dụng hình ảnh
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".DangNhapActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        // mỗi khi có acivity thì sẽ khai báo ở đây
+        <activity android:name=".DangKyActivity">
+
+        </activity>
+
+        <activity android:name=".TrangChuActicity">
+
+        </activity>
+
+        <activity android:name=".ThemThucDonActivity">
+
+        </activity>
+
+        <activity android:name=".ThemLoaiThucDonActivity"
+            android:theme="@style/PopUpActivity"
+            android:label="@string/loaithucdon">
+
+        </activity>
+
+        <activity android:name=".ThemBanAnActivity"
+            android:theme="@style/PopUpActivity"
+            android:label="@string/thembanan">
+        </activity>
+
+        <activity android:name=".SoLuongActivity"
+            android:theme="@style/PopUpActivity"
+            android:label="@string/soluong">
+        </activity>
+
+        <activity android:name=".ThanhToanActivity">
+
+        </activity>
+
+        <activity android:name=".SuaBanAnActivity"
+            android:theme="@style/PopUpActivity"
+            android:label="@string/sua">
+        </activity>
+    </application>
+
+</manifest>
