@@ -91,9 +91,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { }
 
     // mở kết nối sqllite
     public SQLiteDatabase open(){

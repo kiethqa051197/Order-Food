@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,13 +27,10 @@ public class BanAnDAO {
         contentValues.put(CreateDatabase.TB_BANAN_TINHTRANG, "false");
 
         long kiemtra = database.insert(CreateDatabase.TB_BANAN, null, contentValues);
-        if (kiemtra != 0){
-            return true;
-        }else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 
+    @SuppressLint("Recycle")
     public List<BanAnDTO> LayTatCaBanAn(){
         List<BanAnDTO> banAnDTOList = new ArrayList<BanAnDTO>();
         String truyvan= "SELECT * FROM " + CreateDatabase.TB_BANAN;

@@ -1,10 +1,9 @@
 package com.example.anhki.foodapp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -15,7 +14,6 @@ import com.example.anhki.foodapp.CustomAdapter.AdapterHienThiThanhToan;
 import com.example.anhki.foodapp.DAO.BanAnDAO;
 import com.example.anhki.foodapp.DAO.GoiMonDAO;
 import com.example.anhki.foodapp.DTO.ThanhToanDTO;
-import com.example.anhki.foodapp.Fragment.HienThiBanAnFragment;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@
         android:layout_height="76dp"
         android:src="@drawable/logodangnhap"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="24dp"/>
+        android:layout_marginStart="24dp"/>
 
     <TextView
         android:id="@+id/txtTenNhanVienNavigation"
@@ -21,6 +21,5 @@
         android:layout_below="@id/logoNavigation"
         android:textSize="@dimen/size18sp"
         android:textStyle="bold"
-        android:layout_alignLeft="@id/logoNavigation"
         android:layout_alignStart="@id/logoNavigation"/>
 </RelativeLayout>

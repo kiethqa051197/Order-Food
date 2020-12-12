@@ -1,16 +1,18 @@
 package com.example.anhki.foodapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.anhki.foodapp.DAO.NhanVienDAO;
+import com.example.anhki.foodapp.Database.CreateDatabase;
 
 public class DangNhapActivity extends AppCompatActivity implements View.OnClickListener{
     EditText edTenDangNhap, edMatKhau;
@@ -21,6 +23,10 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dangnhap);
+
+        // tạo database cho lần đầu tiên chạy chương trình
+        CreateDatabase createDatabase = new CreateDatabase(this);
+        createDatabase.open();
 
         edTenDangNhap = (EditText) findViewById(R.id.edTenDangNhapDN);
         edMatKhau = (EditText) findViewById(R.id.edMatKhauDN);
@@ -59,7 +65,7 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
             SharedPreferences sharedPreferences = getSharedPreferences("luuquyen", Context.MODE_PRIVATE); // chỉ có ứng dụng này đc dùng
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("maquyen", maquyen);
-            editor.commit();
+            editor.apply();
 
             Intent iTrangChu = new Intent(DangNhapActivity.this, TrangChuActicity.class); // chuyển đổi 2 activity
             iTrangChu.putExtra("tendn", edTenDangNhap.getText().toString());
@@ -83,17 +89,17 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
         HienThiButtonDangKyVaDongY();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         int id = view.getId();
         switch (id){
             case R.id.btnDangKyDN:
                 btnDangKy();
-                ;break;
-
+                break;
             case R.id.btnDongYDN:
                 btnDongY();
-                ;break;
+                break;
         }
     }
 }
