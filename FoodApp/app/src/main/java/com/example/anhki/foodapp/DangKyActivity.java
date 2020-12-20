@@ -1,7 +1,7 @@
 package com.example.anhki.foodapp;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,7 +16,6 @@ import com.example.anhki.foodapp.DAO.NhanVienDAO;
 import com.example.anhki.foodapp.DAO.QuyenDAO;
 import com.example.anhki.foodapp.DTO.NhanVienDTO;
 import com.example.anhki.foodapp.DTO.QuyenDTO;
-import com.example.anhki.foodapp.Database.CreateDatabase;
 import com.example.anhki.foodapp.Fragment.DatePickerFragment;
 
 import java.util.ArrayList;
