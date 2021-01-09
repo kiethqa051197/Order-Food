@@ -11,6 +11,5 @@
         android:layout_height="match_parent"
         android:numColumns="3"
         android:padding="@dimen/size10dp"
-        android:background="@color/colorWhite">
-    </GridView>
+        android:background="@color/colorWhite"/>
 </LinearLayout>

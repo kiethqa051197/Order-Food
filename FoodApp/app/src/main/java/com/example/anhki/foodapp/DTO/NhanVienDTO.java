@@ -1,10 +1,10 @@
 package com.example.anhki.foodapp.DTO;
 
 public class NhanVienDTO {
-    public int MANV;
-    public int CMND;
-    public int MAQUYEN;
-    public String TENDANGNHAP, MATKHAU, GIOITINH, NGAYSINH;
+    private int MANV;
+    private int CMND;
+    private int MAQUYEN;
+    private String TENDANGNHAP, MATKHAU, GIOITINH, NGAYSINH;
 
     public int getMAQUYEN() {
         return MAQUYEN;

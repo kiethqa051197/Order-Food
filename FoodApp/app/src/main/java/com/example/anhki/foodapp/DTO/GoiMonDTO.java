@@ -1,12 +1,10 @@
 package com.example.anhki.foodapp.DTO;
 
 public class GoiMonDTO {
-
-    int MaGoiMon;
-    int MaBan;
-    int MaNhanVien;
-    String TinhTrang, NgayGoi;
-
+    private int MaGoiMon;
+    private int MaBan;
+    private int MaNhanVien;
+    private String TinhTrang, NgayGoi;
 
     public int getMaBan() {
         return MaBan;
@@ -47,5 +45,4 @@ public class GoiMonDTO {
     public void setNgayGoi(String ngayGoi) {
         NgayGoi = ngayGoi;
     }
-
 }

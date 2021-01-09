@@ -16,11 +16,11 @@ import com.example.anhki.foodapp.R;
 import java.util.List;
 
 public class AdapterHienThiLoaiMonAnThucDon extends BaseAdapter {
-    Context context;
-    int layout;
-    List<LoaiMonAnDTO> loaiMonAnDTOList;
-    ViewHolderHienThiLoaiThucDon viewHolderHienThiLoaiThucDon;
-    LoaiMonAnDAO loaiMonAnDAO;
+    private final Context context;
+    private final int layout;
+    private final List<LoaiMonAnDTO> loaiMonAnDTOList;
+    private ViewHolderHienThiLoaiThucDon viewHolder;
+    private final LoaiMonAnDAO loaiMonAnDAO;
 
     public AdapterHienThiLoaiMonAnThucDon(Context context, int layout, List<LoaiMonAnDTO> loaiMonAnDTOList){
         this.context = context;
@@ -44,7 +44,7 @@ public class AdapterHienThiLoaiMonAnThucDon extends BaseAdapter {
         return loaiMonAnDTOList.get(position).getMaLoai();
     }
 
-    public class ViewHolderHienThiLoaiThucDon{
+    public static class ViewHolderHienThiLoaiThucDon{
         ImageView imHinhLoaiThucDon;
         TextView txtTenLoaiThucDon;
     }
@@ -53,25 +53,24 @@ public class AdapterHienThiLoaiMonAnThucDon extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null){
-            viewHolderHienThiLoaiThucDon = new ViewHolderHienThiLoaiThucDon();
+            viewHolder = new ViewHolderHienThiLoaiThucDon();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(layout,parent,false);
 
-            viewHolderHienThiLoaiThucDon.imHinhLoaiThucDon = (ImageView) view.findViewById(R.id.imHienThiMonAn);
-            viewHolderHienThiLoaiThucDon.txtTenLoaiThucDon = (TextView) view.findViewById(R.id.txtTenLoaiThucDon);
+            viewHolder.imHinhLoaiThucDon = view.findViewById(R.id.imHienThiMonAn);
+            viewHolder.txtTenLoaiThucDon = view.findViewById(R.id.txtTenLoaiThucDon);
 
-            view.setTag(viewHolderHienThiLoaiThucDon);
-        }else{
-            viewHolderHienThiLoaiThucDon = (ViewHolderHienThiLoaiThucDon) view.getTag();
-        }
+            view.setTag(viewHolder);
+        }else
+            viewHolder = (ViewHolderHienThiLoaiThucDon) view.getTag();
 
         LoaiMonAnDTO loaiMonAnDTO = loaiMonAnDTOList.get(position);
         int maloai = loaiMonAnDTO.getMaLoai();
         String hinhanh = loaiMonAnDAO.LayHinhLoaiMonAn(maloai);
 
         Uri uri = Uri.parse(hinhanh);
-        viewHolderHienThiLoaiThucDon.txtTenLoaiThucDon.setText(loaiMonAnDTO.getTenLoai());
-        viewHolderHienThiLoaiThucDon.imHinhLoaiThucDon.setImageURI(uri);
+        viewHolder.txtTenLoaiThucDon.setText(loaiMonAnDTO.getTenLoai());
+        viewHolder.imHinhLoaiThucDon.setImageURI(uri);
 
         return view;
     }

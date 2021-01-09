@@ -14,14 +14,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/backgroundToolbar">
-        </androidx.appcompat.widget.Toolbar>
+            android:background="@color/backgroundToolbar"/>
 
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -31,7 +29,5 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/backgroundToolbar"
-        app:menu="@menu/menu_navigation"
-        >
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/menu_navigation"/>
 </androidx.drawerlayout.widget.DrawerLayout>

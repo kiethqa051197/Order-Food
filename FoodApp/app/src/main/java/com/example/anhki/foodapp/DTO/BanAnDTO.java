@@ -1,10 +1,9 @@
 package com.example.anhki.foodapp.DTO;
 
 public class BanAnDTO {
-
-    int MaBan;
-    String TenBan;
-    boolean DuocChon;
+    private int MaBan;
+    private String TenBan;
+    private boolean DuocChon;
 
     public boolean isDuocChon() {
         return DuocChon;

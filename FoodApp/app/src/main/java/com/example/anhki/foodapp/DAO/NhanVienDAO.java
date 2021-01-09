@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NhanVienDAO {
-
-    SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     public NhanVienDAO(Context context){
         CreateDatabase createDatabase = new CreateDatabase(context);
@@ -21,7 +21,6 @@ public class NhanVienDAO {
     }
 
     public boolean ThemNV(NhanVienDTO nhanVienDTO){ //do các trường manv, hoten, v.v là đối tượng của nhanvien mà đối tượng nhân viên đã khai báo trong NHANVIENDTO
-
         //SQLite nhận vào 1 contentValues
         ContentValues contentValues = new ContentValues();
 
@@ -35,24 +34,17 @@ public class NhanVienDAO {
 
         // thêm nhân vien
         long kiemtra = database.insert(CreateDatabase.TB_NHANVIEN, null,contentValues);
-        if (kiemtra != 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 
+    @SuppressLint("Recycle")
     public boolean KiemTraNhanVien(){
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_NHANVIEN;
         Cursor cursor = database.rawQuery(truyvan, null); //rawQuery cho phép truy vấn câu query đơn giản
-        if(cursor.getCount() != 0){
-            return true;
-        }else{
-            return false;
-        }
+        return cursor.getCount() != 0;
     }
 
+    @SuppressLint("Recycle")
     public int KiemTraDangNhap(String tendangnhap, String matkhau){
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_NHANVIEN + " WHERE " + CreateDatabase.TB_NHANVIEN_TEDN + " = '" + tendangnhap
                 + "' AND " + CreateDatabase.TB_NHANVIEN_MATKHAU + " = '" + matkhau + "'";
@@ -69,8 +61,9 @@ public class NhanVienDAO {
         return manhanvien;
     }
 
+    @SuppressLint("Recycle")
     public List<NhanVienDTO> LayDanhSachNhanVien(){
-        List<NhanVienDTO> nhanvienDTOS = new ArrayList<NhanVienDTO>();
+        List<NhanVienDTO> nhanvienDTOS = new ArrayList<>();
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_NHANVIEN;
         Cursor cursor = database.rawQuery(truyvan, null);
         cursor.moveToFirst();
@@ -92,14 +85,10 @@ public class NhanVienDAO {
 
     public boolean XoaNhanVien(int manhanvien){
         long kiemtra = database.delete(CreateDatabase.TB_NHANVIEN, CreateDatabase.TB_NHANVIEN_MANV + " = " + manhanvien, null);
-        if (kiemtra != 0){
-           return true;
-        }
-        else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 
+    @SuppressLint("Recycle")
     public int LayQuyenNhanVien(int manv){
         int maquyen = 0;
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_NHANVIEN + " WHERE " + CreateDatabase.TB_NHANVIEN_MANV + " = " + manv;
@@ -113,6 +102,7 @@ public class NhanVienDAO {
         return maquyen;
     }
 
+    @SuppressLint("Recycle")
     public NhanVienDTO LayDanhSachNhanVienTheoMa(int manhanvien){
         NhanVienDTO nhanVienDTO = new NhanVienDTO();
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_NHANVIEN + " WHERE " + CreateDatabase.TB_NHANVIEN_MANV + " = " + manhanvien;
@@ -141,11 +131,6 @@ public class NhanVienDAO {
         contentValues.put(CreateDatabase.TB_NHANVIEN_NGAYSINH, nhanVienDTO.getNGAYSINH());
 
         long kiemtra = database.update(CreateDatabase.TB_NHANVIEN, contentValues, CreateDatabase.TB_NHANVIEN_MANV + " = " + nhanVienDTO.getMANV(), null);
-        if (kiemtra != 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 }

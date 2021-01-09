@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -20,7 +21,8 @@
         android:layout_width="@dimen/size100dp"
         android:layout_height="@dimen/size100dp"
         android:src="@drawable/banan"
-        android:layout_below="@+id/txtTenBanAn" />
+        android:layout_below="@+id/txtTenBanAn"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imGoiMon"
@@ -29,7 +31,8 @@
         android:src="@drawable/goimon"
         android:layout_below="@+id/imBanAn"
         android:layout_margin="@dimen/size5dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imThanhToan"
@@ -37,9 +40,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/thanhtoan"
         android:layout_below="@+id/imBanAn"
-        android:layout_toRightOf="@+id/imGoiMon"
+        android:layout_toEndOf="@+id/imGoiMon"
         android:layout_margin="@dimen/size5dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imAnButton"
@@ -47,7 +51,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/anbutton"
         android:layout_below="@+id/imBanAn"
-        android:layout_toRightOf="@+id/imThanhToan"
+        android:layout_toEndOf="@+id/imThanhToan"
         android:layout_margin="@dimen/size5dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
 </RelativeLayout>

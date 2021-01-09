@@ -1,7 +1,7 @@
 package com.example.anhki.foodapp.DTO;
 
 public class ChiTietGoiMonDTO {
-    int MaMonAn, MaGoiMon, SoLuong;
+    private int MaMonAn, MaGoiMon, SoLuong;
 
     public int getMaMonAn() {
         return MaMonAn;

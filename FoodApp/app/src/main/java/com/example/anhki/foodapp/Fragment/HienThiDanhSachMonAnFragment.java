@@ -21,7 +21,6 @@ import com.example.anhki.foodapp.SoLuongActivity;
 import java.util.List;
 
 public class HienThiDanhSachMonAnFragment extends Fragment{
-
     GridView gridView;
     MonAnDAO monAnDAO;
     List<MonAnDTO> monAnDTOList;
@@ -65,7 +64,7 @@ public class HienThiDanhSachMonAnFragment extends Fragment{
         view.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction()== KeyEvent.ACTION_DOWN){
+                if (event.getAction() == KeyEvent.ACTION_DOWN){
                     getFragmentManager().popBackStack("hienthiloai", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 }
                 return false;

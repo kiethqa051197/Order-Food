@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MonAnDAO {
-
-    SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     public MonAnDAO(Context context){
         CreateDatabase createDatabase = new CreateDatabase(context);
@@ -28,13 +28,10 @@ public class MonAnDAO {
         contentValues.put(CreateDatabase.TB_MONAN_HINHANH, monAnDTO.getHinhAnh());
 
         long kiemtra = database.insert(CreateDatabase.TB_MONAN,null,contentValues);
-        if(kiemtra != 0){
-            return true;
-        }else{
-            return false;
-        }
+        return kiemtra != 0;
     }
 
+    @SuppressLint("Recycle")
     public List<MonAnDTO> LayDanhSachMonAnTheoLoai(int maloai){
         List<MonAnDTO> monAnDTOs = new ArrayList<MonAnDTO>();
 

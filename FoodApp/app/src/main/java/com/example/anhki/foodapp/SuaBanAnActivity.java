@@ -13,10 +13,9 @@ import android.widget.Toast;
 import com.example.anhki.foodapp.DAO.BanAnDAO;
 
 public class SuaBanAnActivity extends AppCompatActivity implements View.OnClickListener{
-
-    Button btnDongYSua;
-    EditText edSuaTenBan;
-    BanAnDAO banAnDAO;
+    private Button btnDongYSua;
+    private EditText edSuaTenBan;
+    private BanAnDAO banAnDAO;
 
     int maban;
 
@@ -25,8 +24,8 @@ public class SuaBanAnActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_suabanan);
 
-        btnDongYSua = (Button) findViewById(R.id.btnDongYSuaBanAn);
-        edSuaTenBan = (EditText) findViewById(R.id.edSuaTenBanAn);
+        btnDongYSua = findViewById(R.id.btnDongYSuaBanAn);
+        edSuaTenBan = findViewById(R.id.edSuaTenBanAn);
 
         banAnDAO = new BanAnDAO(this);
 
@@ -44,9 +43,8 @@ public class SuaBanAnActivity extends AppCompatActivity implements View.OnClickL
             intent.putExtra("kiemtra", kiemtra);
             setResult(Activity.RESULT_OK, intent);
             finish();
-        }else {
+        }else
             Toast.makeText(SuaBanAnActivity.this, getResources().getString(R.string.vuilongnhapdulieu), Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

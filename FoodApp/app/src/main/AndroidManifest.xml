@@ -3,51 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.anhki.foodapp">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
         tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logodangnhap"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logodangnhap"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-
-        <activity android:name=".DangNhapActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DangNhapActivity"/>
+        <activity android:name=".DangKyActivity" />
+        <activity android:name=".TrangChuActicity" />
+        <activity android:name=".ThemThucDonActivity" />
 
-        <activity android:name=".DangKyActivity"/>
-        <activity android:name=".TrangChuActicity"/>
-        <activity android:name=".ThemThucDonActivity"/>
-
-        <activity android:name=".ThemLoaiThucDonActivity"
-            android:theme="@style/PopUpActivity"
-            android:label="@string/loaithucdon">
+        <activity
+            android:name=".ThemLoaiThucDonActivity"
+            android:label="@string/loaithucdon"
+            android:theme="@style/PopUpActivity">
         </activity>
-
-        <activity android:name=".ThemBanAnActivity"
-            android:theme="@style/PopUpActivity"
-            android:label="@string/thembanan">
+        <activity
+            android:name=".ThemBanAnActivity"
+            android:label="@string/thembanan"
+            android:theme="@style/PopUpActivity">
         </activity>
-
-        <activity android:name=".SoLuongActivity"
-            android:theme="@style/PopUpActivity"
-            android:label="@string/soluong">
+        <activity
+            android:name=".SoLuongActivity"
+            android:label="@string/soluong"
+            android:theme="@style/PopUpActivity">
         </activity>
-
-        <activity android:name=".ThanhToanActivity"/>
-
-        <activity android:name=".SuaBanAnActivity"
-            android:theme="@style/PopUpActivity"
-            android:label="@string/sua">
+        <activity android:name=".ThanhToanActivity" />
+        <activity
+            android:name=".SuaBanAnActivity"
+            android:label="@string/sua"
+            android:theme="@style/PopUpActivity">
         </activity>
     </application>
+
 </manifest>

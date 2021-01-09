@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,18 +41,16 @@
     <GridView
         android:id="@+id/gvThanhToan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:numColumns="1">
-
-    </GridView>
+        android:numColumns="1"/>
 
     <TextView
         android:id="@+id/txtTongTien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tongcong"
-        android:layout_marginLeft="@dimen/size10dp"
+        android:layout_marginStart="@dimen/size10dp"
         android:textColor="@color/colorBlack"
         android:textStyle="bold"/>
 
@@ -66,7 +65,8 @@
             android:layout_weight="1"
             android:text="@string/thanhtoan"
             android:background="@color/colorPrimary"
-            android:layout_margin="@dimen/size10dp" />
+            android:layout_margin="@dimen/size10dp"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnThoatThanhToan"
@@ -75,6 +75,7 @@
             android:layout_weight="1"
             android:text="@string/thoat"
             android:background="@color/colorRed"
-            android:layout_margin="@dimen/size10dp"/>
+            android:layout_margin="@dimen/size10dp"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>

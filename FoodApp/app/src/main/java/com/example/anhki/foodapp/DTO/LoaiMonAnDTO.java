@@ -1,9 +1,9 @@
 package com.example.anhki.foodapp.DTO;
 
 public class LoaiMonAnDTO {
-    int MaLoai;
-    String TenLoai;
-    String HinhAnh;
+    private int MaLoai;
+    private String TenLoai;
+    private String HinhAnh;
 
     public String getHinhAnh() {
         return HinhAnh;

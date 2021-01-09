@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/size190dp"
-    android:background="@drawable/backgroundheader1"
-    >
+    android:background="@drawable/backgroundheader1">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/logoNavigation"

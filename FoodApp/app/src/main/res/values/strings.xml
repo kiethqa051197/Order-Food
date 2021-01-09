@@ -6,12 +6,12 @@
     <string name="cmnd">Chứng minh nhân dân</string>
     <string name="dongy">Đồng ý</string>
     <string name="thoat">Thoát</string>
-    <string name="dangky">Đăng ký</string>
+    <string name="dangky">ĐĂNG KÝ</string>
     <string name="loitendangnhap">Vui lòng nhập tên đăng nhập</string>
     <string name="loinhapmatkhau">Vui lòng nhập mật khẩu</string>
     <string name="themthanhcong">Thêm thành công !</string>
     <string name="themthatbai">Thêm thất bại !</string>
-    <string name="dangnhap">Đăng nhập</string>
+    <string name="dangnhap">ĐĂNG NHẬP</string>
     <string name="trangchu">Trang chủ</string>
     <string name="thucdon">Thực đơn</string>
     <string name="nhanvien">Nhân viên</string>

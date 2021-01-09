@@ -13,10 +13,9 @@ import android.widget.Toast;
 import com.example.anhki.foodapp.DAO.LoaiMonAnDAO;
 
 public class ThemLoaiThucDonActivity extends AppCompatActivity implements View.OnClickListener{
-
-    Button btnDongYThemLoaiThucDon;
-    EditText edTenLoai;
-    LoaiMonAnDAO loaiMonAnDAO;
+    private Button btnDongYThemLoaiThucDon;
+    private EditText edTenLoai;
+    private LoaiMonAnDAO loaiMonAnDAO;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,8 +24,8 @@ public class ThemLoaiThucDonActivity extends AppCompatActivity implements View.O
 
         loaiMonAnDAO = new LoaiMonAnDAO(this);
 
-        btnDongYThemLoaiThucDon = (Button) findViewById(R.id.btnDongYThemLoaiThucDon);
-        edTenLoai = (EditText) findViewById(R.id.edThemLoaiThucDon);
+        btnDongYThemLoaiThucDon = findViewById(R.id.btnDongYThemLoaiThucDon);
+        edTenLoai = findViewById(R.id.edThemLoaiThucDon);
 
         btnDongYThemLoaiThucDon.setOnClickListener(this);
     }
@@ -40,8 +39,7 @@ public class ThemLoaiThucDonActivity extends AppCompatActivity implements View.O
             iDuLieu.putExtra("kiemtraloaithucdon", kiemtra);
             setResult(Activity.RESULT_OK, iDuLieu);
             finish();
-        }else {
+        }else
             Toast.makeText(this, getResources().getString(R.string.vuilongnhapdulieu), Toast.LENGTH_SHORT).show();
-        }
     }
 }

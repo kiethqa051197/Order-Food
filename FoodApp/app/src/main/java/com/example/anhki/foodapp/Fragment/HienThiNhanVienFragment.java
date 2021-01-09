@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,7 +41,7 @@ public class HienThiNhanVienFragment extends Fragment{
         View view = inflater.inflate(R.layout.layout_hienthinhanvien, container, false);
         setHasOptionsMenu(true);
 
-        listNhanVien = (ListView) view.findViewById(R.id.listNhanVien);
+        listNhanVien = view.findViewById(R.id.listNhanVien);
 
         nhanVienDAO = new NhanVienDAO(getActivity());
 
@@ -49,7 +50,7 @@ public class HienThiNhanVienFragment extends Fragment{
         sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
         maquyen = sharedPreferences.getInt("maquyen", 0);
 
-        if (maquyen == 1){
+        if (maquyen == 0){
             registerForContextMenu(listNhanVien);
         }
 
@@ -70,6 +71,7 @@ public class HienThiNhanVienFragment extends Fragment{
         adapterHienThiNhanVien.notifyDataSetChanged();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -82,8 +84,7 @@ public class HienThiNhanVienFragment extends Fragment{
                 Intent iDangKy = new Intent(getActivity(), DangKyActivity.class);
                 iDangKy.putExtra("manhanvien", manhavien);
                 startActivity(iDangKy);
-                ;break;
-
+                break;
             case R.id.itXoa:
                 boolean kiemtra = nhanVienDAO.XoaNhanVien(manhavien);
                 if (kiemtra){
@@ -92,7 +93,7 @@ public class HienThiNhanVienFragment extends Fragment{
                 }else {
                     Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.loi), Toast.LENGTH_SHORT).show();
                 }
-                ;break;
+                break;
         }
         return true;
     }
@@ -100,7 +101,7 @@ public class HienThiNhanVienFragment extends Fragment{
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (maquyen == 1){
+        if (maquyen == 0){
             MenuItem itThemNhanVien = menu.add(1, R.id.itThemNhanVien, 1, R.string.themnhanvien);
             itThemNhanVien.setIcon(R.drawable.nhanvien);
             itThemNhanVien.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
@@ -114,7 +115,7 @@ public class HienThiNhanVienFragment extends Fragment{
             case R.id.itThemNhanVien:
                 Intent iDangKy = new Intent(getActivity(), DangKyActivity.class);
                 startActivity(iDangKy);
-                ;break;
+                break;
         }
         return true;
     }

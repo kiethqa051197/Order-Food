@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BanAnDAO {
-
-    SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     public BanAnDAO(Context context){
         CreateDatabase createDatabase = new CreateDatabase(context);
@@ -32,7 +31,7 @@ public class BanAnDAO {
 
     @SuppressLint("Recycle")
     public List<BanAnDTO> LayTatCaBanAn(){
-        List<BanAnDTO> banAnDTOList = new ArrayList<BanAnDTO>();
+        List<BanAnDTO> banAnDTOList = new ArrayList<>();
         String truyvan= "SELECT * FROM " + CreateDatabase.TB_BANAN;
         Cursor cursor = database.rawQuery(truyvan, null);
         cursor.moveToFirst();
@@ -47,6 +46,7 @@ public class BanAnDAO {
         return banAnDTOList;
     }
 
+    @SuppressLint("Recycle")
     public String LayTinhTrangBan(int maban){
         String tinhtrang = "";
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_BANAN + " WHERE " + CreateDatabase.TB_BANAN_MABAN + " = '" + maban + "'";
@@ -54,7 +54,6 @@ public class BanAnDAO {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             tinhtrang = cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_BANAN_TINHTRANG));
-
             cursor.moveToNext();
         }
 
@@ -66,12 +65,7 @@ public class BanAnDAO {
         contentValues.put(CreateDatabase.TB_BANAN_TINHTRANG, tinhtrang);
 
         long kiemtra = database.update(CreateDatabase.TB_BANAN, contentValues, CreateDatabase.TB_BANAN_MABAN + " = '" + maban + "'", null);
-
-        if (kiemtra != 0) {
-            return true;
-        }else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 
     public boolean CapNhatTenBan(int maban, String tenban){
@@ -79,20 +73,11 @@ public class BanAnDAO {
         contentValues.put(CreateDatabase.TB_BANAN_TENBAN, tenban);
 
         long kiemtra = database.update(CreateDatabase.TB_BANAN, contentValues, CreateDatabase.TB_BANAN_MABAN + " = '" + maban + "'", null);
-
-        if (kiemtra != 0) {
-            return true;
-        }else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 
     public boolean XoaBanAn(int maban){
         long kiemtra = database.delete(CreateDatabase.TB_BANAN, CreateDatabase.TB_BANAN_MABAN + " = " + maban, null);
-        if (kiemtra != 0){
-            return true;
-        }else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 }

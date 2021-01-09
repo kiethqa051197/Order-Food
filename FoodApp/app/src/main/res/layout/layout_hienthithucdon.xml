@@ -7,8 +7,6 @@
         android:id="@+id/gvHienThiThucDon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2">
-
-    </GridView>
+        android:numColumns="2"/>
 
 </LinearLayout>

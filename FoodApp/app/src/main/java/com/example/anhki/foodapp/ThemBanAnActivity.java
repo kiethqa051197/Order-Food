@@ -12,18 +12,17 @@ import android.widget.EditText;
 import com.example.anhki.foodapp.DAO.BanAnDAO;
 
 public class ThemBanAnActivity extends AppCompatActivity implements View.OnClickListener{
-
-    EditText edTenThemBanAn;
-    Button btnDongYThemBanAn;
-    BanAnDAO banAnDAO;
+    private EditText edTenThemBanAn;
+    private Button btnDongYThemBanAn;
+    private BanAnDAO banAnDAO;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_thembanan);
 
-        edTenThemBanAn = (EditText) findViewById(R.id.edTenThemBanAn);
-        btnDongYThemBanAn = (Button) findViewById(R.id.btnDongYThemBanAn);
+        edTenThemBanAn = findViewById(R.id.edTenThemBanAn);
+        btnDongYThemBanAn = findViewById(R.id.btnDongYThemBanAn);
 
         banAnDAO = new BanAnDAO(this);
         btnDongYThemBanAn.setOnClickListener(this);

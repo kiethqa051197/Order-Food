@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundtransparentGreen">
@@ -10,14 +11,15 @@
         android:layout_width="@dimen/size80dp"
         android:layout_height="@dimen/size80dp"
         android:src="@drawable/nhanvien"
-        android:layout_margin="@dimen/size10dp"/>
+        android:layout_margin="@dimen/size10dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/txtTenNhanVien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tên nhân viên"
-        android:layout_toRightOf="@id/imHinhNhanVien"
+        android:layout_toEndOf="@id/imHinhNhanVien"
         android:layout_marginTop="@dimen/size10dp"
         android:textSize="@dimen/size18sp"
         android:textStyle="bold"/>
@@ -27,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="272606828"
-        android:layout_toRightOf="@id/imHinhNhanVien"
+        android:layout_toEndOf="@id/imHinhNhanVien"
         android:layout_marginTop="@dimen/size10dp"
         android:layout_below="@id/txtTenNhanVien"/>
 </RelativeLayout>

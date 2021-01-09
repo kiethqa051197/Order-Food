@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGreen">
@@ -33,7 +34,8 @@
                 android:padding="@dimen/size10dp"
                 android:hint="Tên món ăn"
                 android:textColor="@color/colorGray"
-                android:textColorHint="@color/colorGray"/>
+                android:textColorHint="@color/colorGray"
+                tools:ignore="Autofill,TextFields" />
 
             <EditText
                 android:id="@+id/edThemGiaTien"
@@ -45,7 +47,8 @@
                 android:hint="Giá tiền"
                 android:textColor="@color/colorGray"
                 android:textColorHint="@color/colorGray"
-                android:numeric="integer"/>
+                android:numeric="integer"
+                tools:ignore="Autofill,Deprecated,TextFields" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,20 +57,18 @@
 
                 <Spinner
                     android:id="@+id/spinLoaiMonAn"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="@dimen/size10dp"
-                    android:padding="@dimen/size10dp">
-
-                </Spinner>
+                    android:padding="@dimen/size10dp"/>
 
                 <ImageButton
                     android:id="@+id/imThemLoaiThucDon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@android:drawable/ic_input_add"
-                    />
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
         </LinearLayout>
 
@@ -76,7 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size150dp"
             android:src="@drawable/backgroundheader1"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -93,7 +95,8 @@
             android:layout_weight="1"
             android:layout_margin="@dimen/size10dp"
             android:padding="@dimen/size10dp"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnThoatThemMonAn"
@@ -103,6 +106,7 @@
             android:layout_weight="1"
             android:layout_margin="@dimen/size10dp"
             android:padding="@dimen/size10dp"
-            android:background="@color/colorRed"/>
+            android:background="@color/colorRed"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>

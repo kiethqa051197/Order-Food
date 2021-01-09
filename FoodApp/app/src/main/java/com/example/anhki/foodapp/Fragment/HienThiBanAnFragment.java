@@ -1,10 +1,13 @@
 package com.example.anhki.foodapp.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.ContextMenu;
@@ -29,17 +32,14 @@ import com.example.anhki.foodapp.TrangChuActicity;
 import java.util.List;
 
 public class HienThiBanAnFragment extends Fragment {
-
     public static int RESQUEST_CODE_THEM = 111;
     public static int RESQUEST_CODE_SUA = 16;
 
-    GridView gvHienThiBanAn;
-    List<BanAnDTO> banAnDTOList;
-    BanAnDAO banAnDAO;
-    AdapterHienThiBanAn adapterHienThiBanAn;
+    private GridView gvHienThiBanAn;
+    private List<BanAnDTO> banAnDTOList;
+    private BanAnDAO banAnDAO;
 
-    int maquyen = 0;
-    SharedPreferences sharedPreferences;
+    private int maquyen = 0;
 
     @Nullable
     @Override
@@ -49,27 +49,26 @@ public class HienThiBanAnFragment extends Fragment {
         ((TrangChuActicity)getActivity()).getSupportActionBar().setTitle(R.string.banan); //khi gọi getActivity thì hệ thống không hiểu là của activity nào
                                                                                     //mà trong TrangChuActivity chứa tất cả Fragment nên ta ép kiểu cho nó về TrangChuActivity
 
-        gvHienThiBanAn = (GridView) view.findViewById(R.id.gvHienBanAn);
-        sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
+        gvHienThiBanAn = view.findViewById(R.id.gvHienBanAn);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
         maquyen = sharedPreferences.getInt("maquyen", 0);
 
         banAnDAO = new BanAnDAO(getActivity());
         banAnDAO.LayTatCaBanAn();
 
         HienThiDanhSachBanAn();
-        if (maquyen == 1){
-            registerForContextMenu(gvHienThiBanAn);
-        }
+        if (maquyen == 0) registerForContextMenu(gvHienThiBanAn);
 
         return view;
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getActivity().getMenuInflater().inflate(R.menu.edit_context_menu, menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -83,49 +82,43 @@ public class HienThiBanAnFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), SuaBanAnActivity.class);
                 intent.putExtra("maban", maban);
                 startActivityForResult(intent, RESQUEST_CODE_SUA);
-
-                ;break;
-
+                break;
             case R.id.itXoa:
                 boolean kiemtra = banAnDAO.XoaBanAn(maban);
                 if (kiemtra){
                     Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.xoathanhcong), Toast.LENGTH_SHORT).show();
                     HienThiDanhSachBanAn();
-                }else {
+                }else
                     Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.loi) + maban, Toast.LENGTH_SHORT).show();
-                }
-                ;break;
+                break;
         }
-
         return super.onContextItemSelected(item);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (maquyen == 1){
+        if (maquyen == 0){
             //là quản lý
             MenuItem itThemBanAn = menu.add(1, R.id.itThemBanAn, 1, R.string.thembanan);
             itThemBanAn.setIcon(R.drawable.thembanan);
             itThemBanAn.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
-      }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
-            case R.id.itThemBanAn:
-                Intent iThemBanAn = new Intent(getActivity(), ThemBanAnActivity.class);
-                startActivityForResult(iThemBanAn, RESQUEST_CODE_THEM);
-                ;break;
+        if (id == R.id.itThemBanAn) {
+            Intent iThemBanAn = new Intent(getActivity(), ThemBanAnActivity.class);
+            startActivityForResult(iThemBanAn, RESQUEST_CODE_THEM);
         }
         return true;
     }
 
     private void HienThiDanhSachBanAn(){
         banAnDTOList = banAnDAO.LayTatCaBanAn();
-        adapterHienThiBanAn = new AdapterHienThiBanAn(getActivity(), R.layout.custom_layout_hienthibanan, banAnDTOList);
+        AdapterHienThiBanAn adapterHienThiBanAn = new AdapterHienThiBanAn(getActivity(), R.layout.custom_layout_hienthibanan, banAnDTOList);
         gvHienThiBanAn.setAdapter(adapterHienThiBanAn);
         adapterHienThiBanAn.notifyDataSetChanged();
     }
@@ -135,25 +128,21 @@ public class HienThiBanAnFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RESQUEST_CODE_THEM){
             if (resultCode == Activity.RESULT_OK){
-                Intent intent = data;
-                boolean kiemtra = intent.getBooleanExtra("ketquathem", false);
+                boolean kiemtra = data.getBooleanExtra("ketquathem", false);
                 if(kiemtra){
                     HienThiDanhSachBanAn();
                     Toast.makeText(getActivity(), getResources().getString(R.string.themthanhcong), Toast.LENGTH_SHORT).show();
-                }else {
+                }else
                     Toast.makeText(getActivity(), getResources().getString(R.string.themthatbai), Toast.LENGTH_SHORT).show();
-                }
             }
         }else if (requestCode == RESQUEST_CODE_SUA){
             if (resultCode == Activity.RESULT_OK){
-                Intent intent = data;
-                boolean kiemtra = intent.getBooleanExtra("kiemtra", false);
+                boolean kiemtra = data.getBooleanExtra("kiemtra", false);
                 HienThiDanhSachBanAn();
-                if (kiemtra){
+                if (kiemtra)
                     Toast.makeText(getActivity(), getResources().getString(R.string.suathanhcong), Toast.LENGTH_SHORT).show();
-                }else {
+                else
                     Toast.makeText(getActivity(), getResources().getString(R.string.loi), Toast.LENGTH_SHORT).show();
-                }
             }
         }
     }

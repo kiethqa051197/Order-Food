@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.CustomAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,14 +31,13 @@ import java.util.Calendar;
 import java.util.List;
 
 public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickListener{
-
-    Context context;
-    int layout;
-    List<BanAnDTO> banAnDTOList;
-    ViewHolderBanAn viewHolderBanAn;
-    BanAnDAO banAnDAO;
-    GoiMonDAO goiMonDAO;
-    FragmentManager fragmentManager;
+    private final Context context;
+    private final int layout;
+    private final List<BanAnDTO> banAnDTOList;
+    private ViewHolderBanAn viewHolderBanAn;
+    private final BanAnDAO banAnDAO;
+    private final GoiMonDAO goiMonDAO;
+    private final FragmentManager fragmentManager;
 
     public AdapterHienThiBanAn(Context context, int layout, List<BanAnDTO> banAnDTOList){
         this.context = context;
@@ -64,20 +64,18 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
         return banAnDTOList.get(position).getMaBan();
     }
 
+    @SuppressLint({"NonConstantResourceId", "SimpleDateFormat"})
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        int vitri1 = (int) viewHolderBanAn.imBanAn.getTag();
-        int maban = banAnDTOList.get(vitri1).getMaBan();
+        int maban = banAnDTOList.get((int) viewHolderBanAn.imBanAn.getTag()).getMaBan();
 
         viewHolderBanAn = (ViewHolderBanAn) ((View)v.getParent()).getTag();
         switch (id){
             case R.id.imBanAn:
-                int vitri = (int) v.getTag();
-                banAnDTOList.get(vitri).setDuocChon(true);
+                banAnDTOList.get((int) v.getTag()).setDuocChon(true);
                 HienThiButton();
-                ;break;
-
+                break;
             case R.id.imGoiMon:
                 Intent LayiTrangChu = ((TrangChuActicity)context).getIntent();
                 int manhanvien = LayiTrangChu.getIntExtra("manhanvien", 0);
@@ -97,9 +95,8 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
 
                     long kiemtra = goiMonDAO.ThemGoiMon(goiMonDTO);
                     banAnDAO.CapNhatTinhTrangBan(maban, "true");
-                    if (kiemtra == 0){
+                    if (kiemtra == 0)
                         Toast.makeText(context, context.getResources().getString(R.string.themthatbai), Toast.LENGTH_SHORT).show();
-                    }
                 }
 
                 FragmentTransaction tranThucDonTransaction = fragmentManager.beginTransaction();
@@ -112,21 +109,19 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
                 tranThucDonTransaction.replace(R.id.content, hienThiThucDonFragment).addToBackStack("hienthibanan");
                 tranThucDonTransaction.commit();
 
-                ;break;
-
+                break;
             case R.id.imThanhToan:
                 Intent iThanhToan = new Intent(context, ThanhToanActivity.class);
                 iThanhToan.putExtra("maban", maban);
                 context.startActivity(iThanhToan);
-                ;break;
-
+                break;
             case R.id.imAnButton:
                 AnButton(true);
-                ;break;
+                break;
         }
     }
 
-    public class ViewHolderBanAn{
+    public static class ViewHolderBanAn{
         ImageView imBanAn, imGoiMon, imThanhToan, imAnButton;
         TextView txtTenBanAn;
     }
@@ -158,35 +153,32 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        if (view==null){
+        if (view == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             viewHolderBanAn = new ViewHolderBanAn();
             view = inflater.inflate(R.layout.custom_layout_hienthibanan, parent, false);
-            viewHolderBanAn.imBanAn = (ImageView) view.findViewById(R.id.imBanAn);
-            viewHolderBanAn.imGoiMon = (ImageView) view.findViewById(R.id.imGoiMon);
-            viewHolderBanAn.imThanhToan = (ImageView) view.findViewById(R.id.imThanhToan);
-            viewHolderBanAn.imAnButton = (ImageView) view.findViewById(R.id.imAnButton);
-            viewHolderBanAn.txtTenBanAn = (TextView) view.findViewById(R.id.txtTenBanAn);
+            viewHolderBanAn.imBanAn = view.findViewById(R.id.imBanAn);
+            viewHolderBanAn.imGoiMon = view.findViewById(R.id.imGoiMon);
+            viewHolderBanAn.imThanhToan = view.findViewById(R.id.imThanhToan);
+            viewHolderBanAn.imAnButton = view.findViewById(R.id.imAnButton);
+            viewHolderBanAn.txtTenBanAn = view.findViewById(R.id.txtTenBanAn);
 
             view.setTag(viewHolderBanAn);
-        }else {
+        }else
             viewHolderBanAn = (ViewHolderBanAn) view.getTag();
-        }
 
-        if (banAnDTOList.get(position).isDuocChon()){    //lấy tất cả thuộc tính đc chọn có bằng true hay không
+        if (banAnDTOList.get(position).isDuocChon())    //lấy tất cả thuộc tính đc chọn có bằng true hay không
             HienThiButton();
-        }else {
+        else
             AnButton(false);
-        }
 
         BanAnDTO banAnDTO = banAnDTOList.get(position); // position tương ứng với mỗi giá trị khi gridview tạo ra
 
         String kttinhtrang = banAnDAO.LayTinhTrangBan(banAnDTO.getMaBan());
-        if (kttinhtrang.equals("true")){
+        if (kttinhtrang.equals("true"))
             viewHolderBanAn.imBanAn.setImageResource(R.drawable.banantrue);
-        }else {
+        else
             viewHolderBanAn.imBanAn.setImageResource(R.drawable.banan);
-        }
 
         viewHolderBanAn.txtTenBanAn.setText(banAnDTO.getTenBan());
         viewHolderBanAn.imBanAn.setTag(position);

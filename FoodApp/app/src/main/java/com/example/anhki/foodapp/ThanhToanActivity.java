@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
@@ -18,28 +19,28 @@ import com.example.anhki.foodapp.DTO.ThanhToanDTO;
 import java.util.List;
 
 public class ThanhToanActivity extends AppCompatActivity implements View.OnClickListener{
-
-    GridView gridView;
-    Button btnThanhToan, btnThoat;
-    TextView txtTongTien;
-    GoiMonDAO goiMonDAO;
-    List<ThanhToanDTO> thanhToanDTOList;
-    AdapterHienThiThanhToan adapterHienThiThanhToan;
-    BanAnDAO banAnDAO;
-    FragmentManager fragmentManager;
+    private GridView gridView;
+    private Button btnThanhToan, btnThoat;
+    private TextView txtTongTien;
+    private GoiMonDAO goiMonDAO;
+    private List<ThanhToanDTO> thanhToanDTOList;
+    private AdapterHienThiThanhToan adapterHienThiThanhToan;
+    private BanAnDAO banAnDAO;
+    private FragmentManager fragmentManager;
 
     long tongtien = 0;
     int maban;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_thanhtoan);
 
-        gridView = (GridView) findViewById(R.id.gvThanhToan);
-        btnThanhToan = (Button) findViewById(R.id.btnThanhToan);
-        btnThoat = (Button) findViewById(R.id.btnThoatThanhToan);
-        txtTongTien = (TextView) findViewById(R.id.txtTongTien);
+        gridView = findViewById(R.id.gvThanhToan);
+        btnThanhToan = findViewById(R.id.btnThanhToan);
+        btnThoat = findViewById(R.id.btnThoatThanhToan);
+        txtTongTien = findViewById(R.id.txtTongTien);
 
         goiMonDAO = new GoiMonDAO(this);
         banAnDAO = new BanAnDAO(this);
@@ -48,7 +49,6 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
 
         maban = getIntent().getIntExtra("maban", 0);
         if (maban != 0){
-
             HienThiThanhToan();
 
             for (int i = 0; i < thanhToanDTOList.size(); i++){
@@ -57,8 +57,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
 
                 tongtien += (soluong * giatien);
             }
-
-                txtTongTien.setText(getResources().getString(R.string.tongcong) + " " + tongtien);
+            txtTongTien.setText(getResources().getString(R.string.tongcong) + " " + tongtien);
         }
 
         btnThanhToan.setOnClickListener(this);
@@ -74,6 +73,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         adapterHienThiThanhToan.notifyDataSetChanged();
     }
 
+    @SuppressLint({"NonConstantResourceId", "ShowToast"})
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -85,14 +85,12 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                 if(kiemrabanan && kiemtragoimom){
                     Toast.makeText(ThanhToanActivity.this, getResources().getString(R.string.thanhtoanthanhcong), Toast.LENGTH_SHORT);
                     HienThiThanhToan();
-                }else {
+                }else
                     Toast.makeText(ThanhToanActivity.this, getResources().getString(R.string.loi), Toast.LENGTH_SHORT);
-                }
-                ;break;
-
+                break;
             case R.id.btnThoatThanhToan:
                 finish();
-                ;break;
+                break;
         }
     }
 }

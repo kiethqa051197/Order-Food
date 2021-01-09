@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class CreateDatabase extends SQLiteOpenHelper {
-
     public static String TB_NHANVIEN = "NHANVIEN";
     public static String TB_MONAN = "MONAN";
     public static String TB_LOAIMONAN = "LOAIMONAN";
@@ -47,7 +46,6 @@ public class CreateDatabase extends SQLiteOpenHelper {
     public static String TB_CHITIETGOIMON_MAGOIMON = "MAGOIMON";
     public static String TB_CHITIETGOIMON_MAMONAN = "MAMONAN";
     public static String TB_CHITIETGOIMON_SOLUONG = "SOLUONG";
-
 
     public CreateDatabase(Context context) {
         super(context, "OrderFood", null, 1);

@@ -1,8 +1,8 @@
 package com.example.anhki.foodapp.DTO;
 
 public class ThanhToanDTO {
-    String TenMonAn;
-    int SoLuong, Giatien;
+    private String TenMonAn;
+    private int SoLuong, Giatien;
 
     public String getTenMonAn() {
         return TenMonAn;

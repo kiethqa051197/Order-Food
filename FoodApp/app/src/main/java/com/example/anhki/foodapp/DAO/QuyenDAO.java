@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuyenDAO {
-    SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     public QuyenDAO(Context context){
         CreateDatabase createDatabase = new CreateDatabase(context);
@@ -25,6 +26,7 @@ public class QuyenDAO {
         database.insert(CreateDatabase.TB_QUYEN, null, contentValues);
     }
 
+    @SuppressLint("Recycle")
     public List<QuyenDTO> LayDanhSachQuyen(){
         List<QuyenDTO> quyenDTOS = new ArrayList<QuyenDTO>();
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_QUYEN;

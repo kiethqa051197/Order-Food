@@ -13,11 +13,10 @@ import com.example.anhki.foodapp.R;
 import java.util.List;
 
 public class AdapterHienThiLoaiMonAn extends BaseAdapter{
-
-    Context context;
-    int layout;
-    List<LoaiMonAnDTO> loaiMonAnDTOList;
-    ViewHolderLoaiMonAn viewHolderLoaiMonAn;
+    private final Context context;
+    private final int layout;
+    private final List<LoaiMonAnDTO> loaiMonAnDTOList;
+    private ViewHolderLoaiMonAn viewHolderLoaiMonAn;
 
     public AdapterHienThiLoaiMonAn(Context context, int layout, List<LoaiMonAnDTO> loaiMonAnDTOList){
         this.context = context;
@@ -40,7 +39,7 @@ public class AdapterHienThiLoaiMonAn extends BaseAdapter{
         return loaiMonAnDTOList.get(position).getMaLoai();
     }
 
-    public class ViewHolderLoaiMonAn{
+    public static class ViewHolderLoaiMonAn{
         TextView txtTenLoai;
     }
 
@@ -55,10 +54,8 @@ public class AdapterHienThiLoaiMonAn extends BaseAdapter{
             viewHolderLoaiMonAn.txtTenLoai = (TextView) view.findViewById(R.id.txtTenLoai);
 
             view.setTag(viewHolderLoaiMonAn);
-        }
-        else {
+        } else
             viewHolderLoaiMonAn = (ViewHolderLoaiMonAn) view.getTag();
-        }
 
         LoaiMonAnDTO loaiMonAnDTO = loaiMonAnDTOList.get(position);
         viewHolderLoaiMonAn.txtTenLoai.setText(loaiMonAnDTO.getTenLoai());
@@ -75,13 +72,11 @@ public class AdapterHienThiLoaiMonAn extends BaseAdapter{
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.custom_layout_spinloaithucdon, parent, false);
 
-            viewHolderLoaiMonAn.txtTenLoai = (TextView) view.findViewById(R.id.txtTenLoai);
+            viewHolderLoaiMonAn.txtTenLoai = view.findViewById(R.id.txtTenLoai);
 
             view.setTag(viewHolderLoaiMonAn);
-        }
-        else {
+        } else
             viewHolderLoaiMonAn = (ViewHolderLoaiMonAn) view.getTag();
-        }
 
         LoaiMonAnDTO loaiMonAnDTO = loaiMonAnDTOList.get(position);
         viewHolderLoaiMonAn.txtTenLoai.setText(loaiMonAnDTO.getTenLoai());

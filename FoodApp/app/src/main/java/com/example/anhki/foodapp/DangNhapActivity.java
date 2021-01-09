@@ -1,57 +1,73 @@
 package com.example.anhki.foodapp;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.anhki.foodapp.DAO.NhanVienDAO;
-import com.example.anhki.foodapp.Database.CreateDatabase;
 
 public class DangNhapActivity extends AppCompatActivity implements View.OnClickListener{
-    EditText edTenDangNhap, edMatKhau;
-    Button btnDongY, btnDangKy;
-    NhanVienDAO nhanVienDAO;
+    private EditText edTenDangNhap, edMatKhau;
+    private Button btnDongY;
+    private NhanVienDAO nhanVienDAO;
+
+    private final int STORAGE_PERMISSION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dangnhap);
 
-        // tạo database cho lần đầu tiên chạy chương trình
-        CreateDatabase createDatabase = new CreateDatabase(this);
-        createDatabase.open();
+        edTenDangNhap = findViewById(R.id.edTenDangNhapDN);
+        edMatKhau = findViewById(R.id.edMatKhauDN);
 
-        edTenDangNhap = (EditText) findViewById(R.id.edTenDangNhapDN);
-        edMatKhau = (EditText) findViewById(R.id.edMatKhauDN);
-
-        btnDongY = (Button) findViewById(R.id.btnDongYDN);
-        btnDangKy = (Button) findViewById(R.id.btnDangKyDN);
+        btnDongY = findViewById(R.id.btnDongYDN);
 
         nhanVienDAO = new NhanVienDAO(this);
 
-        btnDongY.setOnClickListener(this);
-        btnDangKy.setOnClickListener(this);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            requestStoragePermission();
 
-        btnDangKy.setVisibility(View.GONE);
-        HienThiButtonDangKyVaDongY();
+        btnDongY.setOnClickListener(this);
     }
 
-    private void HienThiButtonDangKyVaDongY(){
-        boolean kiemtra = nhanVienDAO.KiemTraNhanVien();
-        if (kiemtra){
-            btnDangKy.setVisibility(View.GONE);
-            btnDongY.setVisibility(View.VISIBLE);
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Ứng dụng cần được cấp quyền")
+                    .setMessage("Ứng dụng cần được cấp quyền truy cập bộ nhớ để có thể sử dụng ứng dụng tốt hơn!")
+                    .setPositiveButton("Ok", (dialog, which) -> ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE))
+                    .setNegativeButton("Hủy", (dialog, which) -> System.exit(0))
+                    .create().show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
         }
-        else{
-            btnDangKy.setVisibility(View.VISIBLE);
-            btnDongY.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE)  {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Đã được cấp quyền!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Ứng dụng bị từ chối cấp quyền!", Toast.LENGTH_SHORT).show();
+                requestStoragePermission();
+            }
         }
     }
 
@@ -71,35 +87,17 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
             iTrangChu.putExtra("tendn", edTenDangNhap.getText().toString());
             iTrangChu.putExtra("manhanvien", kiemtra);
             startActivity(iTrangChu);
+
+            finish();
+
             overridePendingTransition(R.anim.hieuung_activity_vao, R.anim.hieuung_activity_ra);
-        } else {
-            Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại!!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void btnDangKy(){
-        Intent iDangKy = new Intent(DangNhapActivity.this, DangKyActivity.class);
-        iDangKy.putExtra("landautien", 1);
-        startActivity(iDangKy);
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        HienThiButtonDangKyVaDongY();
+        } else Toast.makeText(DangNhapActivity.this, "Đăng nhập thất bại!!", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id){
-            case R.id.btnDangKyDN:
-                btnDangKy();
-                break;
-            case R.id.btnDongYDN:
-                btnDongY();
-                break;
-        }
+        if (id == R.id.btnDongYDN) btnDongY();
     }
 }

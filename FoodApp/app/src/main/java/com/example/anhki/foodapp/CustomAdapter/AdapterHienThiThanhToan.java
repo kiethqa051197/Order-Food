@@ -13,11 +13,10 @@ import com.example.anhki.foodapp.R;
 import java.util.List;
 
 public class AdapterHienThiThanhToan extends BaseAdapter{
-
-    Context context;
-    int layout;
-    List<ThanhToanDTO> thanhToanDTOS;
-    ViewHolderThanhToan viewHolderThanhToan;
+    private final Context context;
+    private final int layout;
+    private final List<ThanhToanDTO> thanhToanDTOS;
+    private ViewHolderThanhToan viewHolderThanhToan;
 
     public AdapterHienThiThanhToan(Context context, int layout, List<ThanhToanDTO> thanhToanDTOS){
         this.context = context;
@@ -40,7 +39,7 @@ public class AdapterHienThiThanhToan extends BaseAdapter{
         return 0;
     }
 
-    public class ViewHolderThanhToan{
+    public static class ViewHolderThanhToan{
         TextView txtTenMonAn, txtSoLuong, txtGiaTien;
     }
 

@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoaiMonAnDAO {
-
-    SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     public LoaiMonAnDAO(Context context){
         CreateDatabase createDatabase = new CreateDatabase(context);
@@ -26,14 +26,10 @@ public class LoaiMonAnDAO {
 
         long kiemtra = database.insert(CreateDatabase.TB_LOAIMONAN, null, contentValues);
 
-        if (kiemtra != 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return kiemtra != 0;
     }
 
+    @SuppressLint("Recycle")
     public List<LoaiMonAnDTO> LayDanhSachLoaiMonAn(){
         List<LoaiMonAnDTO> loaiMonAnDTOs = new ArrayList<LoaiMonAnDTO>();
 
@@ -53,10 +49,12 @@ public class LoaiMonAnDAO {
         return loaiMonAnDTOs;
     }
 
+    @SuppressLint("Recycle")
     public String LayHinhLoaiMonAn(int maloai){
         String hinhanh = "";
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_MONAN + " WHERE " + CreateDatabase.TB_MONAN_MALOAI + " = '" + maloai + "' "
                 + " AND " + CreateDatabase.TB_MONAN_HINHANH + " != '' ORDER BY " + CreateDatabase.TB_MONAN_MAMON + " LIMIT 1";
+
         Cursor cursor = database.rawQuery(truyvan, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){

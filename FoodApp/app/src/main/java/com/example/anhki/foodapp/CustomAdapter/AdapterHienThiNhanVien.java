@@ -14,12 +14,11 @@ import com.example.anhki.foodapp.R;
 import java.util.List;
 
 public class AdapterHienThiNhanVien extends BaseAdapter{
+    private final Context context;
+    private final int layout;
+    private final List<NhanVienDTO> nhanVienDTOList;
 
-    Context context;
-    int layout;
-    List<NhanVienDTO> nhanVienDTOList;
-
-    ViewHolderNhanVien viewHolderNhanVien;
+    private ViewHolderNhanVien viewHolderNhanVien;
 
     public AdapterHienThiNhanVien(Context context, int layout, List<NhanVienDTO> nhanVienDTOList){
         this.context = context;
@@ -42,7 +41,7 @@ public class AdapterHienThiNhanVien extends BaseAdapter{
         return nhanVienDTOList.get(position).getMANV();
     }
 
-    public class ViewHolderNhanVien{
+    public static class ViewHolderNhanVien{
         ImageView imHinhNhanVien;
         TextView txtTenNhanVien, txtCMND;
     }

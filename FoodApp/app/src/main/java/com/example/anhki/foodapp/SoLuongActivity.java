@@ -14,7 +14,6 @@ import com.example.anhki.foodapp.DAO.GoiMonDAO;
 import com.example.anhki.foodapp.DTO.ChiTietGoiMonDTO;
 
 public class SoLuongActivity extends AppCompatActivity implements View.OnClickListener{
-
     int maban, mamonan;
     Button btnDongYThemSoLuong;
     EditText edSoLuong;
@@ -25,8 +24,8 @@ public class SoLuongActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_themsoluong);
 
-        btnDongYThemSoLuong = (Button) findViewById(R.id.btnDongYThemSoLuong);
-        edSoLuong = (EditText) findViewById(R.id.edSoLuongMonAn);
+        btnDongYThemSoLuong = findViewById(R.id.btnDongYThemSoLuong);
+        edSoLuong = findViewById(R.id.edSoLuongMonAn);
 
         goiMonDAO = new GoiMonDAO(this);
 
@@ -54,12 +53,10 @@ public class SoLuongActivity extends AppCompatActivity implements View.OnClickLi
             chiTietGoiMonDTO.setSoLuong(tongsoluong);
 
             boolean kiemtracapnhat = goiMonDAO.CapNhatSoLuong(chiTietGoiMonDTO);
-            if (kiemtracapnhat){
+            if (kiemtracapnhat)
                 Toast.makeText(this, getResources().getString(R.string.themthanhcong), Toast.LENGTH_SHORT).show();
-            }
-            else {
+            else
                 Toast.makeText(this, getResources().getString(R.string.themthatbai), Toast.LENGTH_SHORT).show();
-            }
         }else {
             //thêm món ăn
             int soluonggoi = Integer.parseInt(edSoLuong.getText().toString());
@@ -70,12 +67,10 @@ public class SoLuongActivity extends AppCompatActivity implements View.OnClickLi
             chiTietGoiMonDTO.setSoLuong(soluonggoi);
 
             boolean kiemtrathem = goiMonDAO.ThemChiTietGoiMon(chiTietGoiMonDTO);
-            if (kiemtrathem){
+            if (kiemtrathem)
                 Toast.makeText(this, getResources().getString(R.string.themthanhcong), Toast.LENGTH_SHORT).show();
-            }
-            else {
+            else
                 Toast.makeText(this, getResources().getString(R.string.themthatbai), Toast.LENGTH_SHORT).show();
-            }
         }
 
         finish();

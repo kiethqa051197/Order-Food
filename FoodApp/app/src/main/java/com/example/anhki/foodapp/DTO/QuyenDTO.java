@@ -1,8 +1,8 @@
 package com.example.anhki.foodapp.DTO;
 
 public class QuyenDTO {
-    int MaQuyen;
-    String TenQuyen;
+    private int MaQuyen;
+    private String TenQuyen;
 
     public int getMaQuyen() {
         return MaQuyen;

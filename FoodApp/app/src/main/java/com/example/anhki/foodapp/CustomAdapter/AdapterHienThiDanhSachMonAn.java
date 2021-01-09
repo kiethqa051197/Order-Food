@@ -1,5 +1,6 @@
 package com.example.anhki.foodapp.CustomAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -15,11 +16,10 @@ import com.example.anhki.foodapp.R;
 import java.util.List;
 
 public class AdapterHienThiDanhSachMonAn extends BaseAdapter{
-
-    Context context;
-    int layout;
-    List<MonAnDTO> monAnDTOList;
-    ViewHolderHienThiDanhSachMonAn viewHolderHienThiDanhSachMonAn;
+    private final Context context;
+    private final int layout;
+    private final List<MonAnDTO> monAnDTOList;
+    private ViewHolderHienThiDanhSachMonAn viewHolderHienThiDanhSachMonAn;
 
     public AdapterHienThiDanhSachMonAn(Context context, int layout, List<MonAnDTO> monAnDTOList){
         this.context = context;
@@ -42,11 +42,12 @@ public class AdapterHienThiDanhSachMonAn extends BaseAdapter{
         return monAnDTOList.get(position).getMaMonAn();
     }
 
-    public class ViewHolderHienThiDanhSachMonAn{
+    public static class ViewHolderHienThiDanhSachMonAn{
         ImageView imHinhMonAn;
         TextView txtTenMonAn, txtGiaTien;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
@@ -55,20 +56,20 @@ public class AdapterHienThiDanhSachMonAn extends BaseAdapter{
             viewHolderHienThiDanhSachMonAn = new ViewHolderHienThiDanhSachMonAn();
             view = inflater.inflate(layout, parent, false);
 
-            viewHolderHienThiDanhSachMonAn.imHinhMonAn = (ImageView) view.findViewById(R.id.imHienThiDSMonAn);
-            viewHolderHienThiDanhSachMonAn.txtTenMonAn = (TextView) view.findViewById(R.id.txtTenDSMonAn);
-            viewHolderHienThiDanhSachMonAn.txtGiaTien = (TextView) view.findViewById(R.id.txtGiaTienDSMonAn);
+            viewHolderHienThiDanhSachMonAn.imHinhMonAn = view.findViewById(R.id.imHienThiDSMonAn);
+            viewHolderHienThiDanhSachMonAn.txtTenMonAn = view.findViewById(R.id.txtTenDSMonAn);
+            viewHolderHienThiDanhSachMonAn.txtGiaTien = view.findViewById(R.id.txtGiaTienDSMonAn);
 
             view.setTag(viewHolderHienThiDanhSachMonAn);
-        }else {
+        }else
             viewHolderHienThiDanhSachMonAn = (ViewHolderHienThiDanhSachMonAn) view.getTag();
-        }
 
         MonAnDTO monAnDTO = monAnDTOList.get(position);
-        String hinhanh = monAnDTO.getHinhAnh().toString();
-        if(hinhanh == null || hinhanh.equals("")){
+        String hinhanh = monAnDTO.getHinhAnh();
+
+        if(hinhanh == null || hinhanh.equals(""))
             viewHolderHienThiDanhSachMonAn.imHinhMonAn.setImageResource(R.drawable.backgroundheader1);
-        }else{
+        else{
             Uri uri = Uri.parse(hinhanh);
             viewHolderHienThiDanhSachMonAn.imHinhMonAn.setImageURI(uri);
         }
