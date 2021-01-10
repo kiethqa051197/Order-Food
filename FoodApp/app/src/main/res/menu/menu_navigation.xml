@@ -8,19 +8,16 @@
             android:id="@+id/itTrangChu"
             android:title="@string/trangchu"
             android:icon="@drawable/trangchu"
-            android:checked="true"
-            />
+            android:checked="true" />
 
         <item
             android:id="@+id/itThucDon"
             android:title="@string/thucdon"
-            android:icon="@drawable/logodangnhap"
-            />
+            android:icon="@drawable/logodangnhap" />
 
         <item
             android:title="@string/nhanvien"
             android:id="@+id/itNhanVien"
-            android:icon="@drawable/nhanvien"
-            />
+            android:icon="@drawable/nhanvien" />
     </group>
 </menu>

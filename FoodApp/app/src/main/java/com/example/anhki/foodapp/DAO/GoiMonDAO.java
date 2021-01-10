@@ -97,7 +97,7 @@ public class GoiMonDAO {
                 + "ct." + CreateDatabase.TB_CHITIETGOIMON_MAMONAN + " = ma." + CreateDatabase.TB_MONAN_MAMON
                 + " AND " + CreateDatabase.TB_CHITIETGOIMON_MAGOIMON + " = " + magoimon;
 
-        List<ThanhToanDTO> thanhToanDTOS = new ArrayList<ThanhToanDTO>();
+        List<ThanhToanDTO> thanhToanDTOS = new ArrayList<>();
         Cursor cursor = database.rawQuery(truyvan, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){

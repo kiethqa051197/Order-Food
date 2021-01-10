@@ -20,7 +20,8 @@
             android:text="@string/tenmonan"
             android:layout_weight="1"
             android:textColor="@color/colorBlack"
-            android:padding="@dimen/size10dp"/>
+            android:padding="@dimen/size10dp"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/txtSoLuongThanhToan"
@@ -29,7 +30,8 @@
             android:text="@string/soluong"
             android:layout_weight="1"
             android:textColor="@color/colorBlack"
-            android:padding="@dimen/size10dp" />
+            android:padding="@dimen/size10dp"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/txtGiaTienThanhToan"
@@ -38,6 +40,7 @@
             android:text="@string/giatien"
             android:layout_weight="1"
             android:textColor="@color/colorBlack"
-            android:padding="@dimen/size10dp"/>
+            android:padding="@dimen/size10dp"
+            android:textAlignment="center"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

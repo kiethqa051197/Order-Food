@@ -85,7 +85,7 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
             case R.id.imHinhThucDon:
                 Intent iMoHinh = new Intent();
                 iMoHinh.setType("image/*");
-                iMoHinh.setAction(Intent.ACTION_GET_CONTENT);
+                iMoHinh.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(iMoHinh,"Chọn hình thực đơn"), REQUEST_CODE_MOHINH);
                 break;
             case R.id.btnDongYThemMonAn:

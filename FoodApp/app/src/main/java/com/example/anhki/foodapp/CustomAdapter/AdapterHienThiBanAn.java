@@ -19,24 +19,32 @@ import android.widget.Toast;
 
 import com.example.anhki.foodapp.DAO.BanAnDAO;
 import com.example.anhki.foodapp.DAO.GoiMonDAO;
+import com.example.anhki.foodapp.DAO.LoaiMonAnDAO;
 import com.example.anhki.foodapp.DTO.BanAnDTO;
 import com.example.anhki.foodapp.DTO.GoiMonDTO;
+import com.example.anhki.foodapp.DTO.LoaiMonAnDTO;
+import com.example.anhki.foodapp.DTO.ThanhToanDTO;
 import com.example.anhki.foodapp.Fragment.HienThiThucDonFragment;
 import com.example.anhki.foodapp.R;
 import com.example.anhki.foodapp.ThanhToanActivity;
 import com.example.anhki.foodapp.TrangChuActicity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickListener{
     private final Context context;
     private final int layout;
+
     private final List<BanAnDTO> banAnDTOList;
     private ViewHolderBanAn viewHolderBanAn;
+
     private final BanAnDAO banAnDAO;
     private final GoiMonDAO goiMonDAO;
+    private final LoaiMonAnDAO loaiMonAnDAO;
+
     private final FragmentManager fragmentManager;
 
     public AdapterHienThiBanAn(Context context, int layout, List<BanAnDTO> banAnDTOList){
@@ -46,6 +54,7 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
 
         banAnDAO = new BanAnDAO(context);
         goiMonDAO = new GoiMonDAO(context);
+        loaiMonAnDAO = new LoaiMonAnDAO(context);
         fragmentManager = ((TrangChuActicity)context).getSupportFragmentManager();
     }
 
@@ -77,43 +86,57 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
                 HienThiButton();
                 break;
             case R.id.imGoiMon:
-                Intent LayiTrangChu = ((TrangChuActicity)context).getIntent();
-                int manhanvien = LayiTrangChu.getIntExtra("manhanvien", 0);
+                List<LoaiMonAnDTO> loaiMonAnDTOs = loaiMonAnDAO.LayDanhSachLoaiMonAn();
 
-                String tinhtrang = banAnDAO.LayTinhTrangBan(maban);
-                if (tinhtrang.equals("false")){
-                    // thực hiện code thêm bảng gọi món va cập nhật lại tình trạng bàn
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-                    String ngaygoi= dateFormat.format(calendar.getTime());
+                if (loaiMonAnDTOs.size() > 0){
+                    Intent LayiTrangChu = ((TrangChuActicity)context).getIntent();
+                    int manhanvien = LayiTrangChu.getIntExtra("manhanvien", 0);
 
-                    GoiMonDTO goiMonDTO = new GoiMonDTO();
-                    goiMonDTO.setMaBan(maban);
-                    goiMonDTO.setMaNhanVien(manhanvien);
-                    goiMonDTO.setNgayGoi(ngaygoi);
-                    goiMonDTO.setTinhTrang("false");
+                    String tinhtrang = banAnDAO.LayTinhTrangBan(maban);
+                    if (tinhtrang.equals("false")){
+                        // thực hiện code thêm bảng gọi món va cập nhật lại tình trạng bàn
+                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+                        String ngaygoi= dateFormat.format(calendar.getTime());
 
-                    long kiemtra = goiMonDAO.ThemGoiMon(goiMonDTO);
-                    banAnDAO.CapNhatTinhTrangBan(maban, "true");
-                    if (kiemtra == 0)
-                        Toast.makeText(context, context.getResources().getString(R.string.themthatbai), Toast.LENGTH_SHORT).show();
+                        GoiMonDTO goiMonDTO = new GoiMonDTO();
+                        goiMonDTO.setMaBan(maban);
+                        goiMonDTO.setMaNhanVien(manhanvien);
+                        goiMonDTO.setNgayGoi(ngaygoi);
+                        goiMonDTO.setTinhTrang("false");
+
+                        long kiemtra = goiMonDAO.ThemGoiMon(goiMonDTO);
+                        banAnDAO.CapNhatTinhTrangBan(maban, "true");
+                        if (kiemtra == 0)
+                            Toast.makeText(context, context.getResources().getString(R.string.themthatbai), Toast.LENGTH_SHORT).show();
+                    }
+
+                    FragmentTransaction tranThucDonTransaction = fragmentManager.beginTransaction();
+                    HienThiThucDonFragment hienThiThucDonFragment = new HienThiThucDonFragment();
+                    Bundle bDuLieuThucDon = new Bundle();
+                    bDuLieuThucDon.putInt("maban", maban);
+
+                    hienThiThucDonFragment.setArguments(bDuLieuThucDon);
+
+                    tranThucDonTransaction.replace(R.id.content, hienThiThucDonFragment).addToBackStack("hienthibanan");
+                    tranThucDonTransaction.commit();
+                }else {
+                    Toast.makeText(context, "Chưa có danh sách món ăn!!!", Toast.LENGTH_SHORT).show();
                 }
-
-                FragmentTransaction tranThucDonTransaction = fragmentManager.beginTransaction();
-                HienThiThucDonFragment hienThiThucDonFragment = new HienThiThucDonFragment();
-                Bundle bDuLieuThucDon = new Bundle();
-                bDuLieuThucDon.putInt("maban", maban);
-
-                hienThiThucDonFragment.setArguments(bDuLieuThucDon);
-
-                tranThucDonTransaction.replace(R.id.content, hienThiThucDonFragment).addToBackStack("hienthibanan");
-                tranThucDonTransaction.commit();
-
                 break;
             case R.id.imThanhToan:
-                Intent iThanhToan = new Intent(context, ThanhToanActivity.class);
-                iThanhToan.putExtra("maban", maban);
-                context.startActivity(iThanhToan);
+                int magoimon = (int) goiMonDAO.LayMaGoiMonTheoMaBan(maban, "false");
+                List<ThanhToanDTO> thanhToanDTOS = goiMonDAO.LayDanhSachMonAnTheoMaGoiMon(magoimon);
+
+                if (magoimon != 0){
+                    if (thanhToanDTOS.size() > 0){
+                        Intent iThanhToan = new Intent(context, ThanhToanActivity.class);
+                        iThanhToan.putExtra("maban", maban);
+                        context.startActivity(iThanhToan);
+                    }else
+                        Toast.makeText(context, "Bàn chưa gọi món!!!", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(context, "Bàn chưa gọi món!!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.imAnButton:
                 AnButton(true);

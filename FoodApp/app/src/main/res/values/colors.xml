@@ -9,7 +9,9 @@
     <color name="colorRed">#BF360C</color>
     <color name="colorBackground">#68992e</color>
     <color name="backgroundToolbar">#d77a09</color>
-    <color name="backgroundtransparentGreen">#6643A047</color>
     <color name="colorBlack">#000</color>
+
+    <color name="backgroundtransparentGreen">#6643A047</color>
     <color name="backgroundtransparentGray">#F4F4F4</color>
+    <color name="backgroundtransparentBlack">#80000000</color>
 </resources>

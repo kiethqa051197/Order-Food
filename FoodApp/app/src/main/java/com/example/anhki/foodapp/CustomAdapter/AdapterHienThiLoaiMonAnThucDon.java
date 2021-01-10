@@ -68,9 +68,12 @@ public class AdapterHienThiLoaiMonAnThucDon extends BaseAdapter {
         int maloai = loaiMonAnDTO.getMaLoai();
         String hinhanh = loaiMonAnDAO.LayHinhLoaiMonAn(maloai);
 
-        Uri uri = Uri.parse(hinhanh);
+        if (hinhanh != null || hinhanh != ""){
+            Uri uri = Uri.parse(hinhanh);
+            viewHolder.imHinhLoaiThucDon.setImageURI(uri);
+        }
+
         viewHolder.txtTenLoaiThucDon.setText(loaiMonAnDTO.getTenLoai());
-        viewHolder.imHinhLoaiThucDon.setImageURI(uri);
 
         return view;
     }

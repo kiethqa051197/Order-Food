@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,7 +14,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/backgroundToolbar"/>
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/colorWhite"/>
 
         <FrameLayout
             android:id="@+id/content"
@@ -28,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/backgroundToolbar"
-        app:menu="@menu/menu_navigation"/>
+        android:background="@color/colorPrimary"
+        app:menu="@menu/menu_navigation"
+        app:itemTextColor="@color/colorWhite" />
 </androidx.drawerlayout.widget.DrawerLayout>

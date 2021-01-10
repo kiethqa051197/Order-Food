@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreen">
+    android:background="@color/backgroundtransparentGray">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm Thực Đơn"
+        android:text="THÊM THỰC ĐƠN"
         android:layout_gravity="center"
         android:textSize="@dimen/size18sp"
         android:textStyle="bold"
@@ -16,8 +17,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size250dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +34,7 @@
                 android:layout_margin="@dimen/size10dp"
                 android:padding="@dimen/size10dp"
                 android:hint="Tên món ăn"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorGray"
                 tools:ignore="Autofill,TextFields" />
 
@@ -45,7 +46,7 @@
                 android:layout_margin="@dimen/size10dp"
                 android:padding="@dimen/size10dp"
                 android:hint="Giá tiền"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorGray"
                 android:numeric="integer"
                 tools:ignore="Autofill,Deprecated,TextFields" />
@@ -61,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="@dimen/size10dp"
-                    android:padding="@dimen/size10dp"/>
+                    android:padding="@dimen/size10dp" />
 
                 <ImageButton
                     android:id="@+id/imThemLoaiThucDon"
@@ -75,7 +76,7 @@
         <ImageView
             android:id="@+id/imHinhThucDon"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size150dp"
+            android:layout_height="@dimen/size250dp"
             android:src="@drawable/backgroundheader1"
             android:layout_weight="1"
             tools:ignore="ContentDescription" />

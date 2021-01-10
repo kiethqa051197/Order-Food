@@ -31,7 +31,7 @@ public class LoaiMonAnDAO {
 
     @SuppressLint("Recycle")
     public List<LoaiMonAnDTO> LayDanhSachLoaiMonAn(){
-        List<LoaiMonAnDTO> loaiMonAnDTOs = new ArrayList<LoaiMonAnDTO>();
+        List<LoaiMonAnDTO> loaiMonAnDTOs = new ArrayList<>();
 
         String truyvan = "SELECT * FROM " + CreateDatabase.TB_LOAIMONAN;
         Cursor cursor = database.rawQuery(truyvan, null);

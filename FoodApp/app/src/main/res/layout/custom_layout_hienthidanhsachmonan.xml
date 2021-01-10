@@ -3,14 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imHienThiDSMonAn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size150dp"
-        android:background="@drawable/backgroundheader1"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
@@ -18,23 +17,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="bottom"
-        android:background="@color/backgroundtransparentGreen">
+        android:background="@color/backgroundtransparentBlack">
 
         <TextView
             android:id="@+id/txtTenDSMonAn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:textSize="@dimen/size18sp"
             android:textStyle="bold"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"/>
+
         <TextView
             android:id="@+id/txtGiaTienDSMonAn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:textStyle="bold"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"/>
     </LinearLayout>
 
 </FrameLayout>
