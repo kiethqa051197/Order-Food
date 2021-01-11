@@ -1,4 +1,7 @@
 # Order Food
+
+Update 11/01/2021: fix hầu hết các lỗi hiện tại trên ứng dụng
+
 Hà Quốc Anh Kiệt 15110067 <br>
 Lê Hoàng Giang 15110034
 
